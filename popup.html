@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<link rel="stylesheet" type="text/css" href="popup.css">
+
+<html>
+  <div id = "main">
+    <head>
+      <title>Deskfab</title>
+      <p id="names"></p>
+    </head>
+  
+    <body>
+      <h1 id="title">Deskfab</h1>
+      
+      <h4 id="Preset"> Click to Add Preset  <button id="addPreset" class="buttonPaper">+</button></h1>
+  
+      <a id="myDIV"></a>
+    </body>
+  </div>
+
+  <div id = "form">
+    
+    <body>
+      <h1>Deskfab</h1>
+    </body>
+    
+    
+
+    <form action="popup.js">
+      <div class="tooltip">
+        <input id="numb" placeholder="Write Your WorkFab Name"></input>
+        <div id="alert" class="alert">&#9888 Name is too long! &#9888</div>
+      </div>
+      <div id="container">
+      </div>
+    </form>
+    <div id="dropbox">Click Here to Add A New URL</div>
+    <button id="addCurrent" class="miniButton">Add Current Tabs</button>
+    <button id="done" data-inline = "true" class="miniButton">Done</button>
+    <p id="cancel">Cancel</p> 
+  </div>
+</html>
+<script src="popup.js"></script>

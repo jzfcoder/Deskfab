@@ -1,0 +1,208 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700,300);
+
+html, body {
+    width: 250px;
+    height: 350px;
+    margin: 10;
+    padding: 10;
+    background-color: #dbdbdb;
+}
+h1 {
+    margin: 10;
+    padding: 10;
+}
+p {
+  margin: 10;
+  padding: 10;
+  transition: background-color .25s;
+}
+.presets:hover {
+  background-color: #f0f0f0;
+}
+
+button {
+  display: inline;
+}
+
+#dropbox {
+  border: 3px dashed rgba(0, 0, 0, 0.6);
+  width: 200px;
+  height: 25%;
+  padding: 10px;
+  margin: 5px;
+
+  text-align: center;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f100;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* The actual popup */
+.tooltip .tooltip-content {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+/* Popup arrow */
+.tooltip .tooltip-content::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.tooltip .show {
+  visibility: visible;
+  animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
+.papersheet {
+  position: relative;
+  text-decoration: none;
+  box-sizing: border-box;
+  line-height: 1.7;
+  margin-top: 5px;
+  color: #000000;
+  display: block;
+  height: auto;
+  width: 50%;
+  max-width:300px;
+  padding:2px 8px;
+  overflow: auto;
+  cursor: pointer;
+  border-radius: 2px;
+  font-weight: 400;
+  -webkit-transition: all 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+          transition: all 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  background-color: #dbdbdb;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+}
+.papersheet:hover {
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.3), 0 6px 3px 0 rgba(0, 0, 0, 0.19);
+  background:#f0f0f0;
+}
+
+.buttonPaper {
+  position: inline;
+  text-decoration: none;
+  box-sizing: border-box;
+  line-height: 1.7;
+  margin-top: 5px;
+  color: #000000;
+  display: inline;
+  height: auto;
+  width: 13%;
+  max-width:300px;
+  padding:2px 8px;
+  overflow: auto;
+  cursor: pointer;
+  border-radius: 15px;
+  font-weight: 400;
+  -webkit-transition: all 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+          transition: all 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  background-color: #dbdbdb;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+}
+.buttonPaper:hover {
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.3), 0 6px 3px 0 rgba(0, 0, 0, 0.19);
+  background:#44bcd8;
+  color: #ffffff;
+}
+
+.miniButton {
+  position: inline;
+  text-decoration: none;
+  box-sizing: border-box;
+  line-height: 1.7;
+  margin-top: 5px;
+  color: #000000;
+  display: block;
+  height: auto;
+  width: 94%;
+  max-width:300px;
+  padding:2px 8px;
+  overflow: auto;
+  cursor: pointer;
+  border-radius: 15px;
+  font-weight: 400;
+  -webkit-transition: all 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+          transition: all 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  background-color: #dbdbdb;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+}
+
+.miniButton:hover {
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.3), 0 6px 3px 0 rgba(0, 0, 0, 0.19);
+  background:#f0f0f0;
+}
+
+.edit {
+  float: right;
+  width: 47%;
+  padding: 0px;
+  margin-top: -32px;
+}
+
+.delete {
+  float: right;
+  width: 34%;
+  padding: 0px;
+  margin-top: -32px;
+}
+
+.alert {
+  background-color: rgb(214, 41, 41);
+  color: #ffffff;
+  border-radius: 3px;
+  text-align: center;
+}
