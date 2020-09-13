@@ -10,7 +10,6 @@ function startup(){
         list:[]
     }, function(data) {
         tempArray = data.list;
-        console.log(tempArray);
     })
     
     chrome.storage.sync.get({
@@ -79,18 +78,16 @@ function addList(curArray){
         para1obj = document.getElementById(i + "div");
         para1obj.addEventListener('mouseenter', function showEditAndDelete(){
             var num = parseInt(event.target.id);
-            console.log(num);
-            var obj = document.getElementById("edit" + num);
-            var obj0 = document.getElementById("delete" + num);
-            obj.style.display = "block";
+            //var obj = document.getElementById(num + "edit");
+            var obj0 = document.getElementById(num + "delete");
+            //obj.style.display = "block";
             obj0.style.display = "block";
         });
         para1obj.addEventListener('mouseleave', function hideEditAndDelete(){
             var num = parseInt(event.target.id);
-            console.log(num);
-            var obj = document.getElementById("edit" + num);
-            var obj0 = document.getElementById("delete" + num);
-            obj.style.display = "none";
+            //var obj = document.getElementById(num + "edit");
+            var obj0 = document.getElementById(num + "delete");
+            //obj.style.display = "none";
             obj0.style.display = "none";
         });
         
@@ -100,29 +97,37 @@ function addList(curArray){
         document.getElementById(i + "div").appendChild(para);
         para.setAttribute("id", i);
     
+        /*
         var para0 = document.createElement("P");
         para0.className = "edit";
         para0.innerHTML = "(edit |";
-        para0.setAttribute('id', "edit" + i);
+        para0.setAttribute('id', i + "edit");
         para0.style.display = "none";
         document.getElementById(i + "div").appendChild(para0);
 
-        var para0obj = document.getElementById("edit" + i);
+        var para0obj = document.getElementById(i + "edit");
         para0obj.addEventListener('click', function editArray(){
             alert("yay");
         })
+        */
 
         var para2 = document.createElement("P");
         para2.className = "delete";
-        para2.innerHTML = " delete)";
-        para2.setAttribute('id', "delete" + i);
+        para2.innerHTML = "(delete)";
+        para2.setAttribute('id', i + "delete");
 
         para2.style.display = "none";
         document.getElementById(i + "div").appendChild(para2);
 
-        var para2obj = document.getElementById("delete" + i);
+        var para2obj = document.getElementById(i + "delete");
         para2obj.addEventListener('click', function deleteArray(){
-            alert("yay but less");
+            var num = parseInt(event.target.id);
+            tempArray.splice(num, 1);
+
+            console.log(tempArray);
+
+            addList(tempArray);
+            run(num);
         })
 
         //Open the URLS
@@ -140,6 +145,22 @@ function addList(curArray){
 
 }
 
+function run(num2){
+    
+    //get current array
+    chrome.storage.sync.get({
+        list:[] //put defaultvalues if any
+    },
+    function(data) {
+        var array = data.list
+        array.splice(num2, 1);
+        console.log(array);
+        //then call the set to update with modified value
+        chrome.storage.sync.set({
+            list:array
+        });
+    });
+}
 //==================================================================================//
 //                                                                                  //
 //Adding Form                                                                       //
@@ -154,8 +175,6 @@ function doneButton(){
     buttonid1.addEventListener('click', function leave(){
 
         var name = document.getElementById("numb").value;
-        
-        console.log(name.length);
 
         if (name.length == 0){
             //alert("too short. Origin: doneButton");
@@ -215,7 +234,6 @@ function addCurrentTabs(){
             document.getElementById("alert").style.display = "none";
             newPreset = [name1];
             chrome.tabs.query({currentWindow : true}, function(tabs){
-                console.log(tabs);
                 for(var i = 0; i < tabs.length; i++){
                     //get tab URL
                     var curTab = tabs[i];
