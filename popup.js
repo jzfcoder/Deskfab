@@ -19,10 +19,21 @@ function startup(){
     })
     document.getElementById("form").style.display = "none";
     document.getElementById("alert").style.display = "none";
+
+    addEventListener('keydown', function(e){
+        if (e.keyCode == 13){
+            doneButton();
+            event.preventDefault();
+        }
+    })
 }
 
 plusButton();
-doneButton();
+var buttonid1 = document.getElementById('done');
+buttonid1.addEventListener('click', function leave(){
+    doneButton();
+})
+
 addURLFunction();
 addCurrentTabs();
 addCancelButton();
@@ -40,6 +51,8 @@ function plusButton(){
 
         document.getElementById("main").style.display = "none";
         document.getElementById("form").style.display = "block";
+
+        document.getElementById("numb").value = "";
 
     })
 }
@@ -70,7 +83,9 @@ function addList(curArray){
     container.innerHTML = ' ';
 
     for (i in curArray){
-        
+
+        //Create div with Name, Edit, and Delete visuals
+        {
         var para1 = document.createElement("div");          
         para1.className = "opendiv";
         para1.setAttribute('id', i + "div");
@@ -78,26 +93,31 @@ function addList(curArray){
         para1obj = document.getElementById(i + "div");
         para1obj.addEventListener('mouseenter', function showEditAndDelete(){
             var num = parseInt(event.target.id);
-            //var obj = document.getElementById(num + "edit");
+            var obj = document.getElementById(num + "edit");
             var obj0 = document.getElementById(num + "delete");
-            //obj.style.display = "block";
+            obj.style.display = "block";
             obj0.style.display = "block";
         });
         para1obj.addEventListener('mouseleave', function hideEditAndDelete(){
             var num = parseInt(event.target.id);
-            //var obj = document.getElementById(num + "edit");
+            var obj = document.getElementById(num + "edit");
             var obj0 = document.getElementById(num + "delete");
-            //obj.style.display = "none";
+            obj.style.display = "none";
             obj0.style.display = "none";
         });
-        
+        }
+
+        //Create Name and append to div
+        {
         var para = document.createElement("P");
         para.innerHTML = curArray[i][0];
         para.className = "papersheet";
         document.getElementById(i + "div").appendChild(para);
         para.setAttribute("id", i);
-    
-        /*
+        }
+        
+        //Create Edit and append to div
+        {
         var para0 = document.createElement("P");
         para0.className = "edit";
         para0.innerHTML = "(edit |";
@@ -107,15 +127,39 @@ function addList(curArray){
 
         var para0obj = document.getElementById(i + "edit");
         para0obj.addEventListener('click', function editArray(){
-            alert("yay");
-        })
-        */
+            
+            document.getElementById("main").style.display = "none";
+            document.getElementById("form").style.display = "block";
+            
+            var selectedArray = ["selectedArrayName", "url1", "url2", "url3"];
 
+            document.getElementById("numb").value = selectedArray[0];
+            
+            for (var i = 0; i < selectedArray.length - 1; i++){
+                
+                console.log(i);
+                var field = document.createElement("input");
+                field.setAttribute("id", i);
+                field.setAttribute("placeholder", "Add URL: (https://...");
+                field.className = "urls";
+                document.getElementById("container").appendChild(field);
+
+
+                console.log(selectedArray[i]);
+                document.getElementById(i).value = selectedArray[i];
+            }
+
+            //array.splice(position in big Array, 1, new array)
+            populate();
+        })
+        }
+
+        //Create Delete and append to div
+        {
         var para2 = document.createElement("P");
         para2.className = "delete";
-        para2.innerHTML = "(delete)";
+        para2.innerHTML = " delete)";
         para2.setAttribute('id', i + "delete");
-
         para2.style.display = "none";
         document.getElementById(i + "div").appendChild(para2);
 
@@ -129,8 +173,10 @@ function addList(curArray){
             addList(tempArray);
             run(num);
         })
+        }
 
-        //Open the URLS
+        //Open the URLS on click
+        {
         var listenerid = document.getElementById(i);//.addEventListener('click', function openThing(){
         listenerid.addEventListener('click', function openThing(){
             pvtNum = parseInt(event.target.id);
@@ -141,7 +187,10 @@ function addList(curArray){
                 })
             }
         })
-    }
+    }}
+}
+
+function populate(){
 
 }
 
@@ -170,9 +219,6 @@ function run(num2){
 var x = 0;
 
 function doneButton(){
-
-    var buttonid1 = document.getElementById('done');
-    buttonid1.addEventListener('click', function leave(){
 
         var name = document.getElementById("numb").value;
 
@@ -207,7 +253,6 @@ function doneButton(){
             addList(tempArray);
             addToStorage();
         }
-    })
 }
 
 function addCurrentTabs(){
